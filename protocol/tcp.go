@@ -158,9 +158,11 @@ func read(conn tcpConn) {
 //Finish closes the TCPListener associated with this protocol
 func (p *TCPProtocol) Finish() error {
 	log.Printf("Closing TCP Protocol on %s", p.listener.Addr().String())
+	p.lock.Lock()
 	for _, conn := range p.connections {
 		conn.Close()
 	}
+	p.lock.Unlock()
 	return p.listener.Close()
 }
 

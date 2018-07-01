@@ -11,11 +11,11 @@ type Protocol interface {
 	//Address sets the target device of the Protocol, if supported
 	//Address may or may not be expensive, depending on the protocol used
 	//ex: opening and closing TCP ports vs changing an I2C address
-	Address([]byte) error
+	Address(string) error
 
 	//Read and Write bytes using this Protocol to communicate with the device
 	//at the target address
-	io.Writer
+	Write([]byte) (int, error)
 
 	//Receiver sets the protocol's receiver, which is an io.Writer that accepts
 	//data sent to the host using the protocol

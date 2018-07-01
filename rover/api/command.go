@@ -5,17 +5,17 @@ import (
 	"net"
 )
 
-//implements the control API defined for the rover
-type ControlHandler struct {
+//CommandHandler implements the command API defined for the rover
+type CommandHandler struct {
 	ln net.Listener
 }
 
 //Attach creates a worker thread for handling connections to the supplied Listener
-func (f *ControlHandler) Attach(ln net.Listener) {
+func (f *CommandHandler) Attach(ln net.Listener) {
 	go f.listen(ln)
 }
 
-func (f *ControlHandler) listen(ln net.Listener) {
+func (f *CommandHandler) listen(ln net.Listener) {
 	f.ln = ln
 	for {
 		conn, err := ln.Accept()
@@ -28,7 +28,7 @@ func (f *ControlHandler) listen(ln net.Listener) {
 }
 
 //Detach closes the Listener attached to this ControlHandler
-func (f *ControlHandler) Detach() error {
+func (f *CommandHandler) Detach() error {
 	err := f.ln.Close()
 	if err != nil {
 		return err

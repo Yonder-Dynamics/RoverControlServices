@@ -21,7 +21,7 @@ type Handler interface {
 }
 
 func main() {
-	controller := api.ControlHandler{}
+	controller := api.CommandHandler{}
 	controllerListener, err := net.Listen("tcp", ":8081")
 	if err != nil {
 		return

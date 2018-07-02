@@ -1,4 +1,4 @@
-package yonder
+package util
 
 //empty struct (size 0, for signalling)
 type empty struct{}

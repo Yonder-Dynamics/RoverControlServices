@@ -1,4 +1,4 @@
-package yonder
+package util
 
 //Semaphore implementation
 type Semaphore chan empty
